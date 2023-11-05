@@ -131,11 +131,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="includes\engine\BrickBreakerScene.hpp" />
+    <ClCompile Include="includes\engine\InputManager.hpp" />
+    <ClCompile Include="includes\logic\Brick.hpp" />
+    <ClCompile Include="includes\logic\Bullet.hpp" />
+    <ClCompile Include="includes\logic\Canon.hpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\Brick.cpp" />
+    <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\Canon.cpp" />
+    <ClCompile Include="src\GameManager.cpp" />
+    <ClCompile Include="src\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\engine\Scene.hpp" />
+    <ClInclude Include="includes\logic\GameManager.hpp" />
     <ClInclude Include="includes\logic\GameObject.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

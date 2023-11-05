@@ -1,7 +1,12 @@
+#include <SFML/Graphics.hpp>
+
 class GameObject {
 public:
-	GameObject();
-	~GameObject();
+	GameObject() {};
+	~GameObject() {};
 
-
+	int x;
+	int y;
+	int xVelocity;
+	int yVelocity;
 };

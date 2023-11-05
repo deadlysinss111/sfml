@@ -1,48 +1,25 @@
 #include <SFML/Graphics.hpp>
+#include "includes/engine/InputManager.hpp"
+#include "includes/logic/GameObject.hpp"
+
+
 
 int main(int argc, char** argv)
 {
-    //Création d'une fenêtre
-    sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
-
-    //Création d'un cercle de radius 100
-    sf::CircleShape oCircle(100.f);
-    //A la position 0, 0
-    oCircle.setPosition(0.f, 0.f);
-    //Et de couleur verte
-    oCircle.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
+    InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
 
 
-    //Création d'un rectangle de taille 50, 50
-    sf::RectangleShape oRectangle(sf::Vector2f(50.f, 50.f));
-    //A la position 100, 100
-    oCircle.setPosition(100.f, 100.f);
-    //Et de couleur rouge
-    oRectangle.setFillColor(sf::Color::Red);
+    GameObject object();
 
-    //GameLoop
-    while (oWindow.isOpen())
+    while (window.isOpen())
     {
-        //EVENT
-        sf::Event oEvent;
-        while (oWindow.pollEvent(oEvent))
-        {
-            if (oEvent.type == sf::Event::Closed)
-                oWindow.close();
-        }
+        //inputManager.manage();
 
-        //UPDATE
+        window.clear();
 
-        //DRAW
-        oWindow.clear();
-
-        oWindow.draw(oCircle);
-        oWindow.draw(oRectangle);
-
-        oWindow.display();
+        window.display();
     }
 
     return 0;
 }
-
-
