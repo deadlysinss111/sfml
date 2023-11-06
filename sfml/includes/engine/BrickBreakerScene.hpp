@@ -1,3 +1,4 @@
+#pragma once
 #include "Scene.hpp"
 
 class BrickBreakerScene : public Scene {
