@@ -10,9 +10,8 @@ Canon::Canon() : GameObject() {
 	this->rect->h = 80;
 	this->rect->w = 80;
 };
+Canon::~Canon() {};
 
 void Canon::rotation{
 
 }
-
-Canon::~Canon() {};

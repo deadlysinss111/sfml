@@ -1,12 +1,12 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 namespace Maths {
-	class Calcul {
-		Calcul();
-		void vector();
-		float Onormalizing();
-		void normalized();
-	};
-
-
+    class Calcul {
+        float x; 
+        float y;
+    public:
+        Calcul();
+        float Onormalizing(float x, float y);
+        void normalized(sf::Vector2f* vect);
+    };
 }
-
