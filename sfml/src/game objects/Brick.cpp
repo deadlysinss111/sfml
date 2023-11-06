@@ -1,4 +1,4 @@
-#include "../includes/logic/Brick.hpp"
+#include "../../includes/logic/Brick.hpp"
 
 Brick::Brick() {};
 

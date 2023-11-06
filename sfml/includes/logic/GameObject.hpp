@@ -8,6 +8,8 @@ public:
 
 	int x;
 	int y;
+	int h;
+	int w;
 	int xVelocity;
 	int yVelocity;
 };
