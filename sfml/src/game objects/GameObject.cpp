@@ -38,3 +38,5 @@ bool GameObject::checkCollideRect(GameObject* target) {
 	return 0;
 }
 
+
+

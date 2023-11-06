@@ -1,6 +1,6 @@
 #include "../../includes/logic/Canon.hpp"
 
-Canon::Canon() : GameObject() {
+Canon::Canon() {
 	
 
 	this->rect = new sf::RectangleShape Crectangle(sf::Vector2f(50.f, 50.f));

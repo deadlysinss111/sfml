@@ -3,6 +3,7 @@
 
 class GameObject {
 public:
+	GameObject(int x, int y);
 	GameObject(int x, int y, float radius);
 	GameObject(int x, int y, float width, float height);
 	~GameObject();

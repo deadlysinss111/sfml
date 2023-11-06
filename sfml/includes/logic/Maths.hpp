@@ -1,12 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "GameObject.hpp"
 namespace Maths {
-    class Calcul {
-        float x; 
-        float y;
+    class Calcul : GameObject {
     public:
+        float x;
+        float y;
+        float point;
         Calcul();
-        float Onormalizing(float x, float y);
+        ~Calcul();
+        float normalizing(float x, float y);
         void normalized(sf::Vector2f* vect);
+        void bounceVect(GameObject* targetX, GameObject* targetY);
     };
 }
