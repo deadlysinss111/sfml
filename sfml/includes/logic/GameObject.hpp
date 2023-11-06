@@ -1,13 +1,19 @@
 #pragma once
-
+#include <SFML/Graphics.hpp>
 
 class GameObject {
 public:
-	GameObject() {};
-	~GameObject() {};
+	GameObject(int x, int y, float radius);
+	GameObject(int x, int y, float width, float height);
+	~GameObject();
 
-	int x;
-	int y;
-	int h;
-	int w;
+	float x;
+	float y;
+	float h;
+	float w;
+	void move(sf::Vector2f* vect, float deltaT);
+	void rotate(float value);
+	bool checkCollideRect(GameObject* target);
+	sf::Shape* shape;
+	sf::Vector2f* velocity;
 };
