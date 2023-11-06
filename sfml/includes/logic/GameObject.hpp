@@ -16,4 +16,5 @@ public:
 	bool checkCollideRect(GameObject* target);
 	sf::Shape* shape;
 	sf::Vector2f* velocity;
+
 };
