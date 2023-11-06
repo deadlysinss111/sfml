@@ -11,8 +11,5 @@ Brick::Brick() {
 	this->rect->w = 160;
 };
 
-void	Brick::life() {
-
-}
 
 Brick::~Brick() {};

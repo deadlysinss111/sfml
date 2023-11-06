@@ -18,7 +18,6 @@ void InputManager::manage() {
             break;
 
         case sf::Event::MouseMoved:
-
             break;
         
         }
