@@ -1,4 +1,4 @@
-#include "../includes/logic/Canon.hpp"
+#include "../../includes/logic/Canon.hpp"
 
 Canon::Canon() {};
 

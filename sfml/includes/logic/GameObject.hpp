@@ -1,4 +1,5 @@
-#include <SFML/Graphics.hpp>
+#pragma once
+
 
 class GameObject {
 public:
@@ -7,6 +8,6 @@ public:
 
 	int x;
 	int y;
-	int xVelocity;
-	int yVelocity;
+	int h;
+	int w;
 };
