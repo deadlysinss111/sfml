@@ -136,6 +136,7 @@
     <ClCompile Include="includes\logic\Bullet.hpp" />
     <ClCompile Include="includes\logic\Canon.hpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Maths.cpp" />
     <ClCompile Include="src\game objects\Brick.cpp" />
     <ClCompile Include="src\BrickBreackerScene.cpp" />
     <ClCompile Include="src\game objects\Bullet.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="includes\engine\Scene.hpp" />
     <ClInclude Include="includes\logic\GameManager.hpp" />
     <ClInclude Include="includes\logic\GameObject.hpp" />
+    <ClInclude Include="includes\logic\Maths.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

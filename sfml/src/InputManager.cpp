@@ -21,6 +21,7 @@ void InputManager::manage() {
 
         case sf::Event::MouseMoved:
             break;
+        
         }
     }
 }

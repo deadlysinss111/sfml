@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 {
     sf::RenderWindow window(sf::VideoMode(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)), "SFML");
     //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
-    InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
+    InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le dÃ©part plutot que de repasser tout en argument a chaque appels
     sf::Clock clock;
 
     GameObject object(100, 100, 100);
@@ -22,6 +22,7 @@ int main(int argc, char** argv)
 
     while (window.isOpen())
     {
+        //inputManager.manage()
         sf::Time elapsed = clock.restart();
 
         //inputManager.manage();
