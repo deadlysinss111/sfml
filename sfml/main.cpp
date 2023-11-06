@@ -14,7 +14,7 @@ int main(int argc, char** argv)
 
     while (window.isOpen())
     {
-        //inputManager.manage();
+        inputManager.manage();
 
         window.clear();
 

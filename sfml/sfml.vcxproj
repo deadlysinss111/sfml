@@ -136,9 +136,10 @@
     <ClCompile Include="includes\logic\Bullet.hpp" />
     <ClCompile Include="includes\logic\Canon.hpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\Brick.cpp" />
-    <ClCompile Include="src\Bullet.cpp" />
-    <ClCompile Include="src\Canon.cpp" />
+    <ClCompile Include="src\game objects\Brick.cpp" />
+    <ClCompile Include="src\BrickBreackerScene.cpp" />
+    <ClCompile Include="src\game objects\Bullet.cpp" />
+    <ClCompile Include="src\game objects\Canon.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
   </ItemGroup>

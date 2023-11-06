@@ -39,13 +39,16 @@
     <ClCompile Include="includes\logic\Canon.hpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Brick.cpp">
+    <ClCompile Include="src\game objects\Brick.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Bullet.cpp">
+    <ClCompile Include="src\game objects\Bullet.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Canon.cpp">
+    <ClCompile Include="src\game objects\Canon.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BrickBreackerScene.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

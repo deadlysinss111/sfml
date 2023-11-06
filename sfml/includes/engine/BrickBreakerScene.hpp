@@ -5,5 +5,5 @@ public:
 	BrickBreakerScene();
 	~BrickBreakerScene();
 
-	void render(std::vector<GameObject*>);
+	void render(std::vector<GameObject*> objectList);
 };
