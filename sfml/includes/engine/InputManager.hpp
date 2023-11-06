@@ -1,5 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <unordered_map>
+
 
 class InputManager {
 public:
@@ -7,6 +9,8 @@ public:
 	~InputManager();
 
 	sf::RenderWindow* window;
+	std::unordered_map<sf::Event*, void*> eventMap;
 
 	void manage();
+	void bindMap(sf::Event* event, void(*function)());
 };

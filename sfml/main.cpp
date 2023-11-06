@@ -5,6 +5,11 @@
 #include "includes/logic/GameObject.hpp"
 
 
+void testFunc(){
+    std::cout << "great job babe";
+}
+
+
 int main(int argc, char** argv)
 {
     sf::RenderWindow window(sf::VideoMode(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)), "SFML");
@@ -16,16 +21,18 @@ int main(int argc, char** argv)
     GameObject objectTwo(600, 100, 100);
 
 
+    /*sf::Event::KeyPressed test;
+    inputManager.bindMap(sf::Event, testFunc);*/
+
     //Bullet bullet;
     sf::Vector2f vectOne(100.f, 0.f);
     sf::Vector2f vectTwo(-100.f, 0.f);
 
     while (window.isOpen())
     {
-        //inputManager.manage()
         sf::Time elapsed = clock.restart();
 
-        //inputManager.manage();
+        inputManager.manage();
 
         window.clear();
 
@@ -36,8 +43,6 @@ int main(int argc, char** argv)
 
         object.move(&vectOne, elapsed.asSeconds());
         objectTwo.move(&vectTwo, elapsed.asSeconds());
-
-        std::cout << object.checkCollideRect(&objectTwo);
     }
 
     return 0;
