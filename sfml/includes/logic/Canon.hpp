@@ -6,4 +6,6 @@ class Canon : GameObject {
 public:
 	Canon();
 	~Canon();
+	sf::RectangleShape* Crectangle;
+	void rotation();
 };
