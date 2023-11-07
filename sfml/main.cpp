@@ -12,8 +12,8 @@ int main(int argc, char** argv)
    // InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
     sf::Clock clock;
 
-    GameObject object(100, 99, 100);
-    GameObject objectTwo(600, 100, 100);
+    GameObject object(100, 100, 200);
+    GameObject objectTwo(600, 100, 200);
 
 
     //Bullet bullet;
@@ -38,8 +38,11 @@ int main(int argc, char** argv)
 
         object.move(elapsed.asSeconds());
         objectTwo.move(elapsed.asSeconds());
+        object.adjustPosition(window);
+        objectTwo.adjustPosition(window);
 
-        object.checkCollideRect(&objectTwo);
+
+        object.checkCollideRect(&objectTwo, window);
     }
 
     return 0;

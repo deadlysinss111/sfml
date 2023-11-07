@@ -13,10 +13,11 @@ public:
 	float w;
 	void move(float deltaT);
 	void rotate(float value);
-	bool checkCollideRect(GameObject* target);
+	bool checkCollideRect(GameObject* target, sf::RenderWindow& window);
 	sf::Shape* shape;
 	sf::Vector2f* velocity;
 	void setVelocity(sf::Vector2f* vect);
 	bool collided;
+	void adjustPosition(sf::RenderWindow& window);
 
 };

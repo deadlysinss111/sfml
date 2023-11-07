@@ -36,46 +36,66 @@ void GameObject::rotate(float value) {
 	this->shape->rotate(value);
 }
 
-bool GameObject::checkCollideRect(GameObject* target) {
+bool GameObject::checkCollideRect(GameObject* target, sf::RenderWindow& window) {
+    if (!this->collided) {
+        if (this->x + this->w > 0 && this->x < window.getSize().x && this->y + this->h > 0 && this->y < window.getSize().y) {
+            if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y) {
 
-	/*if (target == this) {
-		return 0;
-	}*/
+                float targetXMax = target->x + target->w;
+                float targetYMax = target->y + target->h;
 
-	if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y && !this->collided) {
+                if (target->y < this->y && this->y < targetYMax) {
+                    this->velocity->y = -this->velocity->y;
+                    target->velocity->y = -target->velocity->y;
+                    this->collided = true;
+                }
+                else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
+                    this->velocity->y = -this->velocity->y;
+                    target->velocity->y = -target->velocity->y;
+                    this->collided = true;
+                }
+                else if (target->x < this->x && this->x < targetXMax) {
+                    this->velocity->x = -this->velocity->x;
+                    target->velocity->x = -target->velocity->x;
+                    this->collided = true;
+                }
+                else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
+                    this->velocity->x = -this->velocity->x;
+                    target->velocity->x = -target->velocity->x;
+                    this->collided = true;
+                }
 
-		float targetXMax = target->x + target->w;
-		float targetYMax = target->y + target->h;
+                return true; // Indique qu'il y a eu collision
+            }
+        }
+    }
 
-		if (target->y < this->y < targetYMax) {
-			//math.bounceVectV(this->velocity);
-			this->velocity->y = -this->velocity->y;
-			std::cout << "test ?"<< std::endl;
-			this->collided = true;
-
-		}
-		else if (target->y < this->y + this->h < targetYMax) {
-			//math.bounceVectV(this->velocity);
-			this->velocity->y = -this->velocity->y;
-			std::cout << "test2 ?" << std::endl;
-			this->collided = true;
-		}
-		else if (target->x < this->x < targetXMax) {
-			//math.bounceVectH(this->velocity);
-			this->velocity->x = -this->velocity->x;
-			std::cout << "test3 ?" << std::endl;
-			this->collided = true;
-		}
-		else if (target->x < this->x + this->w < targetXMax) {
-			//math.bounceVectH(this->velocity);
-			this->velocity->x = -this->velocity->x;
-			std::cout << "test4 ?" << std::endl;
-			this->collided = true;
-		}
-		
-	}
-	return 0;
+    return false; // Indique qu'il n'y a pas eu de collision
 }
+
+void GameObject::adjustPosition(sf::RenderWindow& window) {
+    if (this->x < 0) {
+        this->x = 0;
+        this->velocity->x = -this->velocity->x;
+    }
+
+    if (this->x + this->w > window.getSize().x) {
+        this->x = window.getSize().x - this->w;
+        this->velocity->x = -this->velocity->x;
+    }
+
+    if (this->y < 0) {
+        this->y = 0;
+        this->velocity->y = -this->velocity->y;
+    }
+
+    if (this->y + this->h > window.getSize().y) {
+        this->y = window.getSize().y - this->h;
+        this->velocity->y = -this->velocity->y;
+    }
+}
+
+
 
 void GameObject::setVelocity(sf::Vector2f* vect) {
 	this->velocity = vect;
