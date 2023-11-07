@@ -9,8 +9,8 @@ public:
 	~InputManager();
 
 	sf::RenderWindow* window;
-	std::unordered_map<sf::Event*, void*> eventMap;
+	std::unordered_map<sf::Keyboard::Key, void*> eventMap;
 
 	void manage();
-	void bindMap(sf::Event* event, void(*function)());
+	/*void bindMap(sf::Event* event, void(*function)());*/
 };

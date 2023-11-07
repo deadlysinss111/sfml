@@ -8,6 +8,7 @@ GameObject::GameObject(int x, int y, float radius) {
 	this->y = y;
 	this->h = radius;
 	this->w = radius;
+	this->velocity = new sf::Vector2f(0, 0);
 }
 
 GameObject::GameObject(int x, int y, float width, float height) {
@@ -17,9 +18,12 @@ GameObject::GameObject(int x, int y, float width, float height) {
 	this->y = y;
 	this->w = width;
 	this->h = height;
+	this->velocity = new sf::Vector2f(0, 0);
 }
 
-GameObject::~GameObject() {};
+GameObject::~GameObject() {
+	delete this->velocity;
+};
 
 void GameObject::move(sf::Vector2f* vect, float deltaT) {
 	this->x += vect->x * deltaT;
