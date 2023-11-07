@@ -9,16 +9,18 @@ int main(int argc, char** argv)
 {
     sf::RenderWindow window(sf::VideoMode(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)), "SFML");
     //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
-    InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
+   // InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
     sf::Clock clock;
 
-    GameObject object(100, 100, 100);
+    GameObject object(100, 99, 100);
     GameObject objectTwo(600, 100, 100);
 
 
     //Bullet bullet;
     sf::Vector2f vectOne(100.f, 0.f);
+    object.setVelocity(&vectOne);
     sf::Vector2f vectTwo(-100.f, 0.f);
+    objectTwo.setVelocity(&vectTwo);
 
     while (window.isOpen())
     {
@@ -34,10 +36,10 @@ int main(int argc, char** argv)
 
         window.display();
 
-        object.move(&vectOne, elapsed.asSeconds());
-        objectTwo.move(&vectTwo, elapsed.asSeconds());
+        object.move(elapsed.asSeconds());
+        objectTwo.move(elapsed.asSeconds());
 
-        std::cout << object.checkCollideRect(&objectTwo);
+        object.checkCollideRect(&objectTwo);
     }
 
     return 0;

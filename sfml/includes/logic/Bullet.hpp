@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "GameObject.hpp"
 
 #include <SFML/Graphics.hpp>
@@ -11,3 +11,4 @@ public:
 	sf::CircleShape* shape;
 	void move(sf::Vector2f* vect, float deltaT);
 };
+*/

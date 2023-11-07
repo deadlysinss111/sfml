@@ -1,4 +1,4 @@
-#include "../../includes/logic/Brick.hpp"
+/*#include "../../includes/logic/Brick.hpp"
 
 Brick::Brick() {
 
@@ -12,4 +12,4 @@ Brick::Brick() {
 };
 
 
-Brick::~Brick() {};
+Brick::~Brick() {}; */

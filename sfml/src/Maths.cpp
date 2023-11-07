@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "../includes/logic/Maths.hpp"
+#include<iostream>
 using namespace Maths;
 
 Calcul::Calcul(){
@@ -19,8 +20,10 @@ void Calcul::normalized(sf::Vector2f* vect) {
 	vect->y /= norm;
 }
 
-void Calcul::bounceVect(GameObject* targetX, GameObject* targetY){
-	this->y += 2 * y;
-	this->bounceVect(GameObject* targetX, GameObject * targetY);
-	this->bounceVect(this->x - targetX->x, this->y - targetY->y);
+void Calcul::bounceVectH(sf::Vector2f* vect){
+	vect->x = -vect->x;
+	std::cout<< "yo";
+}
+void Calcul::bounceVectV(sf::Vector2f* vect) {
+	vect->y = -vect->y;
 }

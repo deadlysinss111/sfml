@@ -1,6 +1,6 @@
 
 //#include <SFML/Graphics.hpp>
-#include "../../includes/logic/Bullet.hpp"
+/*#include "../../includes/logic/Bullet.hpp"
 
 Bullet::Bullet() {
 	this->shape = new sf::CircleShape(100.f);
@@ -17,3 +17,4 @@ void Bullet::move(sf::Vector2f* vect, float deltaT) {
 	this->x += vect->x * deltaT;
 	this->y += vect->y * deltaT;
 }
+*/
