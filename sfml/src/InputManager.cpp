@@ -25,7 +25,6 @@ void InputManager::manage() {
             auto found = this->eventMap.find(event.key.code);
             if(found != eventMap.end())
             {
-                
                 auto er = found->second;
                 std::cout << typeid(er).name() << std::endl;
                 //void* (er)();
