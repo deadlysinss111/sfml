@@ -18,11 +18,12 @@ GameObject::GameObject(int x, int y, float radius) {
 GameObject::GameObject(int x, int y, float width, float height) {
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->shape->setFillColor(sf::Color::Green);
-	this->x = x;
-	this->y = y;
+	this->x = GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2;
+	this->y = GetSystemMetrics(SM_CYSCREEN) - this->y;
 	this->w = width;
 	this->h = height;
 	this->velocity = new sf::Vector2f(0.f, 0.f);
+    this->shape->setOrigin(sf::Vector2f(w/2, h/2));
 }
 
 GameObject::~GameObject() {
@@ -100,23 +101,15 @@ void GameObject::setVelocity(sf::Vector2f* v1) {
 	this->velocity = v1;
 }
 
-
-sf::Vector2f GameObject::getOrigine() {
-    return(sf::Vector2f(GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2, GetSystemMetrics(SM_CYSCREEN) - this->y));
-}
-
 void GameObject::cannonRotation(sf::Vector2f* v1) {
-    sf::Vector2f origine = this->getOrigine();
     sf::Vector2f hyp(0, 0);
     hyp.x = v1->x - GetSystemMetrics(SM_CXSCREEN) / 2;
-    hyp.y = v1->y - GetSystemMetrics(SM_CYSCREEN);
-    hyp.y -=2 * hyp.y;
+    hyp.y = GetSystemMetrics(SM_CYSCREEN) - v1->y;
     //std::cout << hyp.x << "||" << hyp.y << std::endl;
-    sf::Vector2f v2(0, 1);
-    sf::Vector2f hypSized(1, hyp.y / hyp.x);
+    sf::Vector2f v2(hyp.x, 0);
+    float signe = (hyp.x > 0) ? 1.f : -1.f;
 
-    this->shape->setRotation(acos(cos(math.normalizing(&v2) / math.normalizing(&hyp))));
-    std::cout << (cos(math.normalizing(&v2) / math.normalizing(&hyp))) << std::endl;
+    this->shape->setRotation(signe*180.f*(math.normalizing(&v2) / math.normalizing(&hyp)));
     // on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
     // soit on trouve directement le projeté orthogonal de coordonnées (1, 0) ou (-1, 0), soit on utilise Thalès ? je sais pas vraiment
     // de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
