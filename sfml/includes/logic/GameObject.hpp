@@ -13,7 +13,6 @@ public:
 	bool checkCollideRect(GameObject* target, sf::RenderWindow& window);
 	sf::Shape* shape;
 	void setVelocity(sf::Vector2f* vect);
-	bool collided;
 	void adjustPosition(sf::RenderWindow& window);
 
 private:
@@ -23,5 +22,5 @@ private:
 	float w;
 	sf::Vector2f* velocity;
 	void cannonRotation(sf::Vector2f vect);
-	float getOrigine();
+	sf::Vector2f getOrigine();
 };

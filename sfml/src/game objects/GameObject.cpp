@@ -12,8 +12,7 @@ GameObject::GameObject(int x, int y, float radius) {
 	this->y = y;
 	this->h = radius;
 	this->w = radius;
-	this->velocity = new sf::Vector2f(100.f, 0.f);
-	this->collided = false;
+	this->velocity = new sf::Vector2f(100.f, 0.f);;
 }
 
 GameObject::GameObject(int x, int y, float width, float height) {
@@ -41,36 +40,34 @@ void GameObject::rotate(float value) {
 }
 
 bool GameObject::checkCollideRect(GameObject* target, sf::RenderWindow& window) {
-    if (!this->collided) {
-        if (this->x + this->w > 0 && this->x < window.getSize().x && this->y + this->h > 0 && this->y < window.getSize().y) {
-            if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y) {
+    if (this->x + this->w > 0 && this->x < window.getSize().x && this->y + this->h > 0 && this->y < window.getSize().y) {
+        if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y) {
 
-                float targetXMax = target->x + target->w;
-                float targetYMax = target->y + target->h;
+            float targetXMax = target->x + target->w;
+            float targetYMax = target->y + target->h;
 
-                if (target->y < this->y && this->y < targetYMax) {
-                    this->velocity->y = -this->velocity->y;
-                    target->velocity->y = -target->velocity->y;
-                    this->collided = true;
-                }
-                else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
-                    this->velocity->y = -this->velocity->y;
-                    target->velocity->y = -target->velocity->y;
-                    this->collided = true;
-                }
-                else if (target->x < this->x && this->x < targetXMax) {
-                    this->velocity->x = -this->velocity->x;
-                    target->velocity->x = -target->velocity->x;
-                    this->collided = true;
-                }
-                else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
-                    this->velocity->x = -this->velocity->x;
-                    target->velocity->x = -target->velocity->x;
-                    this->collided = true;
-                }
-
-                return true; // Indique qu'il y a eu collision
+            if (target->y < this->y && this->y < targetYMax) {
+                this->velocity->y = -this->velocity->y;
+                target->velocity->y = -target->velocity->y;
+                //this->collided = true;
             }
+            else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
+                this->velocity->y = -this->velocity->y;
+                target->velocity->y = -target->velocity->y;
+                //this->collided = true;
+            }
+            else if (target->x < this->x && this->x < targetXMax) {
+                this->velocity->x = -this->velocity->x;
+                target->velocity->x = -target->velocity->x;
+                //this->collided = true;
+            }
+            else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
+                this->velocity->x = -this->velocity->x;
+                target->velocity->x = -target->velocity->x;
+                //this->collided = true;
+            }
+
+            return true; // Indique qu'il y a eu collision
         }
     }
 
@@ -106,13 +103,12 @@ void GameObject::setVelocity(sf::Vector2f* vect) {
 }
 
 
-float GameObject::getOrigine() {
-    this->x = GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2;
-    this->y = GetSystemMetrics(SM_CYSCREEN) - this->y;
+sf::Vector2f GameObject::getOrigine() {
+    return(sf::Vector2f(GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2, GetSystemMetrics(SM_CYSCREEN) - this->y));
 }
 
 void GameObject::cannonRotation(sf::Vector2f vect) {
-    float origine = this->getOrigine();
+    sf::Vector2f origine = this->getOrigine();
     // on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
     // soit on trouve directement le projeté orthogonal de coordonnées (1, 0) ou (-1, 0), soit on utilise Thalès ? je sais pas vraiment
     // de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
