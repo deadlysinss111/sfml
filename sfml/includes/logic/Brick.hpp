@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "GameObject.hpp"
 #include <SFML/Graphics.hpp>
 
@@ -10,3 +10,4 @@ public:
 	~Brick();
 	sf::RectangleShape* rectangle;
 };
+*/

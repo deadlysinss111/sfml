@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "GameObject.hpp"
 
 class RectangleShape;
@@ -9,3 +9,4 @@ public:
 	sf::RectangleShape* Crectangle;
 	void rotation();
 };
+*/
