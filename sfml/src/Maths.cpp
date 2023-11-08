@@ -9,13 +9,13 @@ Calcul::Calcul(){
 }
 Calcul::~Calcul() {}
 
-float Calcul::normalizing(float x, float y) {
-	float norm = std::sqrt(x * x + y * y);
+float Calcul::normalizing(sf::Vector2f* vect) {
+	float norm = std::sqrt(vect->x * vect->x + vect->y * vect->y);
 	return norm;
 }
 
 void Calcul::normalized(sf::Vector2f* vect) {
-	float norm = normalizing(vect->x, vect->y);
+	float norm = normalizing(vect);
 	vect->x /= norm;
 	vect->y /= norm;
 }

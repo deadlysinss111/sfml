@@ -49,22 +49,20 @@ bool GameObject::checkCollideRect(GameObject* target, sf::RenderWindow& window) 
             if (target->y < this->y && this->y < targetYMax) {
                 this->velocity->y = -this->velocity->y;
                 target->velocity->y = -target->velocity->y;
-                //this->collided = true;
             }
             else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
                 this->velocity->y = -this->velocity->y;
                 target->velocity->y = -target->velocity->y;
-                //this->collided = true;
+
             }
             else if (target->x < this->x && this->x < targetXMax) {
                 this->velocity->x = -this->velocity->x;
                 target->velocity->x = -target->velocity->x;
-                //this->collided = true;
+
             }
             else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
                 this->velocity->x = -this->velocity->x;
                 target->velocity->x = -target->velocity->x;
-                //this->collided = true;
             }
 
             return true; // Indique qu'il y a eu collision
@@ -98,8 +96,8 @@ void GameObject::adjustPosition(sf::RenderWindow& window) {
 
 
 
-void GameObject::setVelocity(sf::Vector2f* vect) {
-	this->velocity = vect;
+void GameObject::setVelocity(sf::Vector2f* v1) {
+	this->velocity = v1;
 }
 
 
@@ -107,9 +105,14 @@ sf::Vector2f GameObject::getOrigine() {
     return(sf::Vector2f(GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2, GetSystemMetrics(SM_CYSCREEN) - this->y));
 }
 
-void GameObject::cannonRotation(sf::Vector2f vect) {
+void GameObject::cannonRotation(sf::Vector2f* v1) {
     sf::Vector2f origine = this->getOrigine();
+    sf::Vector2f v2(0, 1 * (v1->x < 0) ? 1: 0);
+    sf::Vector2f hyp(1, v1->y / v1->x);
+
+    this->shape->setRotation(acos(cos(math.normalizing(&v2) / math.normalizing(v1))));
     // on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
     // soit on trouve directement le projeté orthogonal de coordonnées (1, 0) ou (-1, 0), soit on utilise Thalès ? je sais pas vraiment
     // de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
 }
+

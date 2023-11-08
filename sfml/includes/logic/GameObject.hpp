@@ -21,6 +21,6 @@ private:
 	float h;
 	float w;
 	sf::Vector2f* velocity;
-	void cannonRotation(sf::Vector2f vect);
+	void cannonRotation(sf::Vector2f* vect);
 	sf::Vector2f getOrigine();
 };
