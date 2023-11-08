@@ -2,6 +2,8 @@
 #include <iostream>
 #include "../../includes/logic/GameObject.hpp"
 #include "../../includes/logic/Maths.hpp"
+#include <Windows.h>
+
 Maths::Calcul math;
 GameObject::GameObject(int x, int y, float radius) {
 	this->shape = new sf::CircleShape(radius);
@@ -103,3 +105,15 @@ void GameObject::setVelocity(sf::Vector2f* vect) {
 	this->velocity = vect;
 }
 
+
+float GameObject::getOrigine() {
+    this->x = GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2;
+    this->y = GetSystemMetrics(SM_CYSCREEN) - this->y;
+}
+
+void GameObject::cannonRotation(sf::Vector2f vect) {
+    float origine = this->getOrigine();
+    // on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
+    // soit on trouve directement le projeté orthogonal de coordonnées (1, 0) ou (-1, 0), soit on utilise Thalès ? je sais pas vraiment
+    // de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
+}
