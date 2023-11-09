@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <functional>
 
-Maths::Calcul math;
+using namespace Maths;
 GameObject::GameObject(int x, int y, float radius) {
 	this->shape = new sf::CircleShape(radius);
 	this->shape->setFillColor(sf::Color::Green);
