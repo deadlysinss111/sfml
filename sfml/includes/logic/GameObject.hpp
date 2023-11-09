@@ -14,7 +14,8 @@ public:
 	sf::Shape* shape;
 	void setVelocity(sf::Vector2f* vect);
 	void adjustPosition(sf::RenderWindow& window);
-	void cannonRotation(sf::Vector2f* vect);
+	//void cannonRotation(sf::Vector2f* vect);
+	void cannonRotation();
 
 private:
 	float x;

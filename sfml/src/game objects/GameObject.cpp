@@ -3,6 +3,7 @@
 #include "../../includes/logic/GameObject.hpp"
 #include "../../includes/logic/Maths.hpp"
 #include <Windows.h>
+#include <functional>
 
 Maths::Calcul math;
 GameObject::GameObject(int x, int y, float radius) {
@@ -12,7 +13,13 @@ GameObject::GameObject(int x, int y, float radius) {
 	this->y = y;
 	this->h = radius;
 	this->w = radius;
-	this->velocity = new sf::Vector2f(0.f, 0.f);;
+	this->velocity = new sf::Vector2f(0.f, 0.f);
+
+    //using someCallbackName = std::function<void()>;
+    //std::bind(&Bar::someOtherFunction, &bar, std::placeholders::_1)
+    std::function<void(*)()> callback = std::bind(GameObject::cannonRotation, this);
+    //this->moveMapping(object.cannonRotation);
+
 }
 
 GameObject::GameObject(int x, int y, float width, float height) {
@@ -101,18 +108,17 @@ void GameObject::setVelocity(sf::Vector2f* v1) {
 	this->velocity = v1;
 }
 
-void GameObject::cannonRotation(sf::Vector2f* v1) {
+//void GameObject::cannonRotation(sf::Vector2f* v1) {
+void GameObject::cannonRotation() {
     sf::Mouse::getPosition();
     sf::Vector2f hyp(0, 0);
     hyp.x = v1->x - GetSystemMetrics(SM_CXSCREEN) / 2;
     hyp.y = GetSystemMetrics(SM_CYSCREEN) - v1->y;
-    //std::cout << hyp.x << "||" << hyp.y << std::endl;
     sf::Vector2f v2(hyp.x, 0);
     float signe = (hyp.x > 0) ? 1.f : -1.f;
 
     this->shape->setRotation(signe*180.f*(math.normalizing(&v2) / math.normalizing(&hyp)));
     // on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
-    // soit on trouve directement le projeté orthogonal de coordonnées (1, 0) ou (-1, 0), soit on utilise Thalès ? je sais pas vraiment
     // de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
 }
 

@@ -5,11 +5,6 @@
 #include "includes/logic/GameObject.hpp"
 
 
-void testFunc(){
-    std::cout << "great job babe in coming";
-}
-
-
 int main(int argc, char** argv)
 {
     sf::RenderWindow window(sf::VideoMode(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)), "SFML");
@@ -18,14 +13,12 @@ int main(int argc, char** argv)
     sf::Clock clock;
 
     GameObject object(100, 50, 100, 50);
-    
-
-
-    //inputManager.bindMap(esc, testFunc);
 
 
     //Bullet bullet;
     sf::Vector2f vectOne(1000.f, 500.f);
+
+    //std::function<void()> callback = std::bind(GameObject::cannonRotation, &object);
 
     while (window.isOpen())
     {

@@ -3,14 +3,8 @@
 //#include <unordered_map>
 #include <iostream>
 
-
-void test() {
-    std::cout << "ughgughgughg";
-}
-
 InputManager::InputManager(sf::RenderWindow* window) {
     this->window = window;
-    this->eventMap = {{sf::Keyboard::Escape, test}};
 }
 
 InputManager::~InputManager() {};
@@ -22,13 +16,44 @@ void InputManager::manage() {
     {
          switch (event.type) {
          case sf::Event::KeyPressed:
-             auto found = this->eventMap.find(event.key.code);
-             if (found != eventMap.end())
+         {
+             auto found = this->keyMap.find(event.key.code);
+             if (found != keyMap.end())
              {
                  found->second();
              }
+             break;
+         }
+         case sf::Event::MouseButtonPressed:
+         {
+             auto found = this->keyMap.find(event.key.code);
+             if (found != keyMap.end())
+             {
+                 found->second();
+             }
+             break;
+         }
+         case sf::Event::MouseMoved:
+         {
+             for (int i; i < this->moveEffect.size(); i++) {
+                 this->moveEffect[i]();
+             }
+         }
          }
     }
+}
+
+
+void InputManager::keyMapping(sf::Keyboard::Key key, void(*function)()) {
+    this->keyMap.insert({ key, function });
+}
+
+void InputManager::mouseMapping(sf::Mouse::Button button, void(*function)()) {
+    this->mouseMap.insert({ button, function });
+}
+
+void InputManager::moveMapping(std::function<void()> function) {
+    this->moveEffect.push_back(function);
 }
 
 
