@@ -14,7 +14,7 @@ int main(int argc, char** argv)
 {
     sf::RenderWindow window(sf::VideoMode(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)), "SFML");
     //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
-    //InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
+    InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
     sf::Clock clock;
 
     GameObject object(100, 50, 100, 50);
@@ -30,14 +30,15 @@ int main(int argc, char** argv)
     while (window.isOpen())
     {
         sf::Event event;
-        while (window.pollEvent(event)) {
+        /*while (window.pollEvent(event)) {
             sf::Vector2f vect(event.mouseMove.x, event.mouseMove.y);
             object.cannonRotation(&vect);
-        }
+        }*/
 
         sf::Time elapsed = clock.restart();
 
-        //inputManager.manage();
+        
+        inputManager.manage();
 
         window.clear();
 

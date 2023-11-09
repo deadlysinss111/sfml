@@ -102,6 +102,7 @@ void GameObject::setVelocity(sf::Vector2f* v1) {
 }
 
 void GameObject::cannonRotation(sf::Vector2f* v1) {
+    sf::Mouse::getPosition();
     sf::Vector2f hyp(0, 0);
     hyp.x = v1->x - GetSystemMetrics(SM_CXSCREEN) / 2;
     hyp.y = GetSystemMetrics(SM_CYSCREEN) - v1->y;
