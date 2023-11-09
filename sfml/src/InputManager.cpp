@@ -2,8 +2,6 @@
 //#include "SFML/Graphics.hpp"
 //#include <unordered_map>
 #include <iostream>
-
-
 void test() {
     std::cout << "ughgughgughg";
 }

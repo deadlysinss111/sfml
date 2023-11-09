@@ -4,7 +4,7 @@
 #include "../../includes/logic/Maths.hpp"
 #include <Windows.h>
 
-Maths::Calcul math;
+using namespace Maths;
 GameObject::GameObject(int x, int y, float radius) {
 	this->shape = new sf::CircleShape(radius);
 	this->shape->setFillColor(sf::Color::Green);
@@ -110,8 +110,7 @@ void GameObject::cannonRotation(sf::Vector2f* v1) {
     sf::Vector2f v2(hyp.x, 0);
     float signe = (hyp.x > 0) ? 1.f : -1.f;
 
-    this->shape->setRotation(signe*180.f*(math.normalizing(&v2) / math.normalizing(&hyp)));
-    // on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
+    this->shape->setRotation(signe*180.f*(normalizing(&v2) / normalizing(&hyp)));
     // soit on trouve directement le projeté orthogonal de coordonnées (1, 0) ou (-1, 0), soit on utilise Thalès ? je sais pas vraiment
     // de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
 }
