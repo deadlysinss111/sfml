@@ -11,6 +11,7 @@ InputManager::~InputManager() {};
 
 void InputManager::manage() {
     sf::Event event;
+    "BITE"
 
     while (this->window->pollEvent(event))
     {
