@@ -2,11 +2,12 @@
 #include <iostream>
 #include "../../includes/logic/GameObject.hpp"
 #include "../../includes/logic/Maths.hpp"
+#include "../../includes/engine/InputManager.hpp"
 #include <Windows.h>
 #include <functional>
 
-using namespace Maths;
-GameObject::GameObject(int x, int y, float radius) {
+GameObject::GameObject(InputManager* inputManager, int x, int y, float radius) {
+    this->inputManager = inputManager;
 	this->shape = new sf::CircleShape(radius);
 	this->shape->setFillColor(sf::Color::Green);
 	this->x = x;
@@ -17,12 +18,14 @@ GameObject::GameObject(int x, int y, float radius) {
 
     //using someCallbackName = std::function<void()>;
     //std::bind(&Bar::someOtherFunction, &bar, std::placeholders::_1)
-    std::function<void(*)()> callback = std::bind(GameObject::cannonRotation, this);
+    //std::function<void(*)()> callback = std::bind(GameObject::cannonRotation, this);
     //this->moveMapping(object.cannonRotation);
+    this->inputManager->moveMapping(std::bind(&GameObject::cannonRotation, this));
 
 }
 
-GameObject::GameObject(int x, int y, float width, float height) {
+GameObject::GameObject(InputManager* inputManager, int x, int y, float width, float height) {
+    this->inputManager = inputManager;
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->shape->setFillColor(sf::Color::Green);
 	this->x = GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2;
@@ -110,14 +113,14 @@ void GameObject::setVelocity(sf::Vector2f* v1) {
 
 //void GameObject::cannonRotation(sf::Vector2f* v1) {
 void GameObject::cannonRotation() {
-    sf::Mouse::getPosition();
+    sf::Vector2i v1 = sf::Mouse::getPosition();
     sf::Vector2f hyp(0, 0);
-    hyp.x = v1->x - GetSystemMetrics(SM_CXSCREEN) / 2;
-    hyp.y = GetSystemMetrics(SM_CYSCREEN) - v1->y;
+    hyp.x = v1.x - GetSystemMetrics(SM_CXSCREEN) / 2;
+    hyp.y = GetSystemMetrics(SM_CYSCREEN) - v1.y;
     sf::Vector2f v2(hyp.x, 0);
     float signe = (hyp.x > 0) ? 1.f : -1.f;
 
-    this->shape->setRotation(signe*180.f*(math.normalizing(&v2) / math.normalizing(&hyp)));
+    this->shape->setRotation(signe*180.f*(Maths::normalizing(&v2) / Maths::normalizing(&hyp)));
     // on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
     // de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
 }

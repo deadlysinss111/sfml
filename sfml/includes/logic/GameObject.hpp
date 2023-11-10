@@ -1,13 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class InputManager;
+
 class GameObject {
 public:
-	GameObject(int x, int y, float radius);
-	GameObject(int x, int y, float width, float height);
+	GameObject(InputManager* inputManager, int x, int y, float radius);
+	GameObject(InputManager* inputManager, int x, int y, float width, float height);
 	~GameObject();
 
 	
+	InputManager* inputManager;
 	void move(float deltaT);
 	void rotate(float value);
 	bool checkCollideRect(GameObject* target, sf::RenderWindow& window);

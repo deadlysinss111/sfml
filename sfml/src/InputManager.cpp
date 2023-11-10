@@ -35,7 +35,7 @@ void InputManager::manage() {
          }
          case sf::Event::MouseMoved:
          {
-             for (int i; i < this->moveEffect.size(); i++) {
+             for (int i = 0; i < this->moveEffect.size(); i++) {
                  this->moveEffect[i]();
              }
          }
