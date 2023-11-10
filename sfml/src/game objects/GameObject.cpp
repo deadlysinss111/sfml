@@ -16,10 +16,6 @@ GameObject::GameObject(InputManager* inputManager, int x, int y, float radius) {
 	this->w = radius;
 	this->velocity = new sf::Vector2f(0.f, 0.f);
 
-    //using someCallbackName = std::function<void()>;
-    //std::bind(&Bar::someOtherFunction, &bar, std::placeholders::_1)
-    //std::function<void(*)()> callback = std::bind(GameObject::cannonRotation, this);
-    //this->moveMapping(object.cannonRotation);
     this->inputManager->moveMapping(std::bind(&GameObject::cannonRotation, this));
 
 }
@@ -34,6 +30,7 @@ GameObject::GameObject(InputManager* inputManager, int x, int y, float width, fl
 	this->h = height;
 	this->velocity = new sf::Vector2f(0.f, 0.f);
     this->shape->setOrigin(sf::Vector2f(w/2, h/2));
+    this->inputManager->moveMapping(std::bind(&GameObject::cannonRotation, this));
 }
 
 GameObject::~GameObject() {
