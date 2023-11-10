@@ -1,7 +1,13 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 
 class InputManager;
+namespace sf {
+	class Shape;
+	class CircleShape;
+	class RectangleShape;
+	class RenderWindow;
+	class Vector2f;
+};
 
 class GameObject {
 public:
@@ -9,18 +15,10 @@ public:
 	GameObject(InputManager* inputManager, int x, int y, float width, float height);
 	~GameObject();
 
-	
 	InputManager* inputManager;
-	void move(float deltaT);
-	void rotate(float value);
-	bool checkCollideRect(GameObject* target, sf::RenderWindow& window);
 	sf::Shape* shape;
-	void setVelocity(sf::Vector2f* vect);
-	void adjustPosition(sf::RenderWindow& window);
-	//void cannonRotation(sf::Vector2f* vect);
-	void cannonRotation();
 
-private:
+
 	float x;
 	float y;
 	float h;

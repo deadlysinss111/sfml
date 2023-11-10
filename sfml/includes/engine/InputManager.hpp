@@ -1,11 +1,14 @@
 #pragma once
-#include "SFML/Graphics.hpp"
 #include <unordered_map>
 #include <functional>
+#include <iostream>
+#include <SFML/Graphics.hpp>
 
 
 class InputManager {
 public:
+	std::vector<int>* v;
+
 	InputManager(sf::RenderWindow* window);
 	~InputManager();
 

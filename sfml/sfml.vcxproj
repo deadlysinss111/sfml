@@ -136,6 +136,7 @@
     <ClCompile Include="includes\logic\Bullet.hpp" />
     <ClCompile Include="includes\logic\Canon.hpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\game objects\GameObject.cpp" />
     <ClCompile Include="src\Maths.cpp" />
     <ClCompile Include="src\game objects\Brick.cpp" />
     <ClCompile Include="src\BrickBreackerScene.cpp" />

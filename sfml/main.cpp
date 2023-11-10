@@ -2,7 +2,13 @@
 #include <Windows.h>
 #include <iostream>
 #include "includes/engine/InputManager.hpp"
-#include "includes/logic/GameObject.hpp"
+#include "includes/logic/Brick.hpp"
+#include "includes/logic/Canon.hpp"
+#include "includes/logic/Bullet.hpp"
+
+
+
+
 
 
 int main(int argc, char** argv)
@@ -12,7 +18,7 @@ int main(int argc, char** argv)
     InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
     sf::Clock clock;
 
-    GameObject object(&inputManager, 100, 50, 100, 50);
+    Canon object(&inputManager, 100, 50, 100, 50);
 
 
     //Bullet bullet;

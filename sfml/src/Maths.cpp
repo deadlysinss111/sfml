@@ -1,7 +1,7 @@
-#include <SFML/Graphics.hpp>
-#include "../includes/logic/Maths.hpp"
+#include <SFML/System/Vector2.hpp>
 #include<iostream>
-using namespace Maths;
+#include "../includes/logic/Maths.hpp"
+
 
 float Maths::normalizing(sf::Vector2f* vect) {
 	float norm = std::sqrt(vect->x * vect->x + vect->y * vect->y);
