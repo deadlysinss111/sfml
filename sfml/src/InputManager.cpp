@@ -20,7 +20,6 @@ void InputManager::manage() {
              auto found = this->keyMap.find(event.key.code);
              if (found != keyMap.end())
              {
-                 std::cout << "oihbopsh" << std::endl;
                  found->second();
              }
              break;
