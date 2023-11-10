@@ -1,11 +1,12 @@
-#pragma once
+/*#pragma once
 #include "GameObject.hpp"
 
-
+class RectangleShape;
 class Canon : GameObject {
 public:
-	Canon(InputManager* inputManager, int x, int y, float width, float height);
+	Canon();
 	~Canon();
-	void rotate();
-	sf::RectangleShape* shape;
+	sf::RectangleShape* Crectangle;
+	void rotation();
 };
+*/

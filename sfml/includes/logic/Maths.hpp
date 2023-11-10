@@ -1,8 +1,5 @@
 #pragma once
-namespace sf{
-    class Vector2f;
-}
-
+#include <SFML/Graphics.hpp>
 namespace Maths {
     float normalizing(sf::Vector2f* vect);
     void normalized(sf::Vector2f* vect);
