@@ -37,7 +37,7 @@ int main(int argc, char** argv)
         sf::Time elapsed = clock.restart();
 
         
-        //inputManager.manage();
+        inputManager.manage();
 
         window.clear();
 
