@@ -9,8 +9,8 @@ Cannon::Cannon(InputManager* inputManager, int x, int y, float width, float heig
 	this->inputManager = inputManager;
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->shape->setFillColor(sf::Color::Green);
-	this->x = GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2;
-	this->y = GetSystemMetrics(SM_CYSCREEN) - this->y;
+	this->x = GetSystemMetrics(SM_CXSCREEN) / 2 ;
+	this->y = GetSystemMetrics(SM_CYSCREEN);
 	this->w = width;
 	this->h = height;
 	this->velocity = new sf::Vector2f(0.f, 0.f);
@@ -19,7 +19,9 @@ Cannon::Cannon(InputManager* inputManager, int x, int y, float width, float heig
 	this->inputManager->moveMapping(std::bind(&Cannon::rotate, this));
 };
 
-Cannon::~Cannon() {};
+Cannon::~Cannon() {
+	delete this->shape;
+};
 
 void Cannon::rotate(){
 	sf::Vector2i v1 = sf::Mouse::getPosition();
@@ -33,3 +35,8 @@ void Cannon::rotate(){
 	// on doit établir le projeté orthogonal de vect sur la droite qui passe par l'origine dirigée par le vecteur (1, 0)
 	// de là on a un triangle rectangle dont on connait deux cotés => trigo pour trouver l'angle et c'est gagné
 }
+
+bool Cannon::update(float deltaT, std::vector<GameObject*>* objectVector) {
+	return 0;
+}
+

@@ -14,7 +14,9 @@ Bullet::Bullet(InputManager* inputManager, int x, int y, float radius) {
 	this->velocity = new sf::Vector2f(0.f, 0.f);
 };
 
-Bullet::~Bullet() {};
+Bullet::~Bullet() {
+    delete this->shape;
+};
 
 void Bullet::move(float deltaT) {
     this->x += this->velocity->x * deltaT;
@@ -75,4 +77,9 @@ void Bullet::adjustPosition(sf::RenderWindow& window) {
 
 void Bullet::setVelocity(sf::Vector2f* v1) {
     this->velocity = v1;
+}
+
+bool Bullet::update(float deltaT, std::vector<GameObject*>* objectVector){
+    this->move(deltaT);
+    return 1;
 }

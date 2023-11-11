@@ -16,3 +16,7 @@ Brick::Brick(InputManager* inputManager, int x, int y, float width, float height
 
 
 Brick::~Brick() {};
+
+bool Brick::update(float deltaT, std::vector<GameObject*>* objectVector){
+	return 0;
+}

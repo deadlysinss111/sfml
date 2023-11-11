@@ -5,6 +5,8 @@
 #include "includes/engine/InputManager.hpp"
 #include "includes/logic/GameObject.hpp"
 #include "includes/logic/Cannon.hpp"
+#include "includes/logic/Bullet.hpp"
+#include "includes/logic/GameManager.hpp"
 
 
 int main(int argc, char** argv)
@@ -13,30 +15,33 @@ int main(int argc, char** argv)
     //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
     InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
     sf::Clock clock;
+    GameManager gameManager;
 
     Cannon object(&inputManager, 100, 50, 100, 50);
+    Bullet bullet(&inputManager, 100, 100, 50);
+    gameManager.insert(&object);
+    gameManager.insert(&bullet);
 
 
     //Bullet bullet;
-    sf::Vector2f vectOne(1000.f, 500.f);
+    sf::Vector2f vectOne(50.f, 0.f);
+    bullet.setVelocity(&vectOne);
 
     //std::function<void()> callback = std::bind(GameObject::cannonRotation, &object);
 
     while (window.isOpen())
     {
         sf::Event event;
-        /*while (window.pollEvent(event)) {
-            sf::Vector2f vect(event.mouseMove.x, event.mouseMove.y);
-            object.cannonRotation(&vect);
-        }*/
 
         sf::Time elapsed = clock.restart();
 
-        
+        gameManager.manage(elapsed.asSeconds());
+
         inputManager.manage();
 
         window.clear();
 
+        window.draw(*bullet.shape);
         window.draw(*object.shape);
 
         window.display();

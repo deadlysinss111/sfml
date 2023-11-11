@@ -4,10 +4,11 @@
 //#include <SFML/Graphics.hpp>
 //class sf::CircleShape;
 
-class Bullet : GameObject {
+class Bullet : public GameObject {
 public:
 	Bullet(InputManager* inputManager, int x, int y, float radius);
 	~Bullet();
+	bool update(float deltaT, std::vector<GameObject*>* objectVector);
 
 	//sf::CircleShape* shape;
 	void move(float deltaT);
