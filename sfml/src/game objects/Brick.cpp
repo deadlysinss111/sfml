@@ -1,15 +1,18 @@
-/*#include "../../includes/logic/Brick.hpp"
+#define NOMINMAX
+#include <windows.h>
+#include "../../includes/logic/Brick.hpp"
 
-Brick::Brick() {
+Brick::Brick(InputManager* inputManager, int x, int y, float width, float height) {
+	this->inputManager = inputManager;
+	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
+	this->shape->setFillColor(sf::Color::Green);
+	this->x = GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2;
+	this->y = GetSystemMetrics(SM_CYSCREEN) - this->y;
+	this->w = width;
+	this->h = height;
+	this->velocity = new sf::Vector2f(0.f, 0.f);
+	this->shape->setOrigin(sf::Vector2f(w / 2, h / 2));
+}
 
 
-	this->rect = new sf::RectangleShape rectangle(sf::Vector2f(50.f, 50.f));
-	this->rect->setFillColor(sf::Color::Red);
-	this->rect->x = 400;
-	this->rect->y = 500;
-	this->rect->h = 80;
-	this->rect->w = 160;
-};
-
-
-Brick::~Brick() {}; */
+Brick::~Brick() {};

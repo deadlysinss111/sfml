@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
+#define NOMINMAX
 #include <Windows.h>
 #include <iostream>
 #include "includes/engine/InputManager.hpp"
 #include "includes/logic/GameObject.hpp"
+#include "includes/logic/Cannon.hpp"
 
 
 int main(int argc, char** argv)
@@ -12,7 +14,7 @@ int main(int argc, char** argv)
     InputManager inputManager(&window); // demander a Peter si c'est une bonne pratique de tout link des le départ plutot que de repasser tout en argument a chaque appels
     sf::Clock clock;
 
-    GameObject object(&inputManager, 100, 50, 100, 50);
+    Cannon object(&inputManager, 100, 50, 100, 50);
 
 
     //Bullet bullet;
@@ -31,7 +33,7 @@ int main(int argc, char** argv)
         sf::Time elapsed = clock.restart();
 
         
-        //inputManager.manage();
+        inputManager.manage();
 
         window.clear();
 
@@ -39,11 +41,6 @@ int main(int argc, char** argv)
 
         window.display();
 
-        object.move(elapsed.asSeconds());
-
-        
-
-        object.adjustPosition(window);
         //object.checkCollideRect(&objectTwo, window);
     }
 

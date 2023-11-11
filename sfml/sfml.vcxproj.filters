@@ -5,13 +5,13 @@
     <ClCompile Include="includes\engine\InputManager.hpp" />
     <ClCompile Include="includes\logic\Brick.hpp" />
     <ClCompile Include="includes\logic\Bullet.hpp" />
-    <ClCompile Include="includes\logic\Canon.hpp" />
+    <ClCompile Include="includes\logic\Cannon.hpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Maths.cpp" />
     <ClCompile Include="src\game objects\Brick.cpp" />
     <ClCompile Include="src\BrickBreackerScene.cpp" />
     <ClCompile Include="src\game objects\Bullet.cpp" />
-    <ClCompile Include="src\game objects\Canon.cpp" />
+    <ClCompile Include="src\game objects\Cannon.cpp" />
     <ClCompile Include="src\game objects\GameObject.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\InputManager.cpp" />

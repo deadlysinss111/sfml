@@ -1,13 +1,13 @@
-/*#pragma once
+#pragma once
+//#include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
-#include <SFML/Graphics.hpp>
-
 
 class Brick : GameObject {
 public:
-	int life;
-	Brick();
+	Brick(InputManager* inputManager, int x, int y, float width, float height);
 	~Brick();
-	sf::RectangleShape* rectangle;
+	//sf::RectangleShape* shape;
+
+private:
+	int hp;
 };
-*/
