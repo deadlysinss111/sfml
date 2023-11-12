@@ -1,12 +1,15 @@
 /*#pragma once
-#include "GameObject.hpp"
+#include <SFML/Graphics.hpp>
 
-class RectangleShape;
-class Canon : GameObject {
+class Canon {
 public:
-	Canon();
-	~Canon();
-	sf::RectangleShape* Crectangle;
-	void rotation();
+    Canon();
+    ~Canon();
+
+    void rotation();
+
+private:
+    sf::RectangleShape* rect;
 };
+
 */

@@ -2,7 +2,10 @@
 #include <iostream>
 #include "../../includes/logic/GameObject.hpp"
 #include "../../includes/logic/Maths.hpp"
-Maths::Calcul math;
+namespace Maths {
+    Calcul math;
+}
+
 GameObject::GameObject(int x, int y, float radius) {
 	this->shape = new sf::CircleShape(radius);
 	this->shape->setFillColor(sf::Color::Green);

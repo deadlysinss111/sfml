@@ -1,23 +1,26 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+namespace Maths {
+    class Calcul;
+}
+
 class GameObject {
 public:
-	GameObject(int x, int y, float radius);
-	GameObject(int x, int y, float width, float height);
-	~GameObject();
+    GameObject(int x, int y, float radius);
+    GameObject(int x, int y, float width, float height);
+    ~GameObject();
 
-	float x;
-	float y;
-	float h;
-	float w;
-	void move(float deltaT);
-	void rotate(float value);
-	bool checkCollideRect(GameObject* target, sf::RenderWindow& window);
-	sf::Shape* shape;
-	sf::Vector2f* velocity;
-	void setVelocity(sf::Vector2f* vect);
-	bool collided;
-	void adjustPosition(sf::RenderWindow& window);
-
+    float x;
+    float y;
+    float h;
+    float w;
+    void move(float deltaT);
+    void rotate(float value);
+    bool checkCollideRect(GameObject* target, sf::RenderWindow& window);
+    sf::Shape* shape;
+    sf::Vector2f* velocity;
+    void setVelocity(sf::Vector2f* vect);
+    bool collided;
+    void adjustPosition(sf::RenderWindow& window);
 };

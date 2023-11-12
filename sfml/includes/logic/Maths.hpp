@@ -1,7 +1,13 @@
+
 #pragma once
 #include <SFML/Graphics.hpp>
+
 namespace Maths {
-    class Calcul{
+    class Calcul;
+}
+
+namespace Maths {
+    class Calcul {
     public:
         float x;
         float y;
