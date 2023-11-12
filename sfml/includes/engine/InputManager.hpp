@@ -11,13 +11,13 @@ public:
 
 	sf::RenderWindow* window;
 	
-	void keyMapping(sf::Keyboard::Key, void(*)());
-	void mouseMapping(sf::Mouse::Button, void(*)());
+	void keyMapping(sf::Keyboard::Key, std::function<void()> function);
+	void mouseMapping(sf::Mouse::Button, std::function<void()> function);
 	void moveMapping(std::function<void()>);
 
 	void manage();
 private:
-	std::unordered_map<sf::Keyboard::Key, void(*)()> keyMap;
-	std::unordered_map<sf::Mouse::Button, void(*)()> mouseMap;
+	std::unordered_map<sf::Keyboard::Key, std::function<void()>> keyMap;
+	std::unordered_map<sf::Mouse::Button, std::function<void()>> mouseMap;
 	std::vector<std::function<void()>> moveEffect;
 };

@@ -5,7 +5,7 @@
 #include "../../includes/logic/Maths.hpp"
 #include "../../includes/engine/InputManager.hpp"
 
-Cannon::Cannon(InputManager* inputManager, int x, int y, float width, float height) {
+Cannon::Cannon(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height) : GameObject(){
 	this->inputManager = inputManager;
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->shape->setFillColor(sf::Color::Green);
@@ -13,7 +13,8 @@ Cannon::Cannon(InputManager* inputManager, int x, int y, float width, float heig
 	this->y = GetSystemMetrics(SM_CYSCREEN);
 	this->w = width;
 	this->h = height;
-	this->velocity = new sf::Vector2f(0.f, 0.f);
+	this->velocity.x = 0.f;
+	this->velocity.y = 0.f;
 	this->shape->setOrigin(sf::Vector2f(w / 2, h / 2));
 	this->shape->setPosition(sf::Vector2f(this->x, this->y));
 	this->inputManager->moveMapping(std::bind(&Cannon::rotate, this));

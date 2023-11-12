@@ -26,8 +26,8 @@ void InputManager::manage() {
          }
          case sf::Event::MouseButtonPressed:
          {
-             auto found = this->keyMap.find(event.key.code);
-             if (found != keyMap.end())
+             auto found = this->mouseMap.find(event.mouseButton.button);
+             if (found != mouseMap.end())
              {
                  found->second();
              }
@@ -44,11 +44,11 @@ void InputManager::manage() {
 }
 
 
-void InputManager::keyMapping(sf::Keyboard::Key key, void(*function)()) {
+void InputManager::keyMapping(sf::Keyboard::Key key, std::function<void()> function) {
     this->keyMap.insert({ key, function });
 }
 
-void InputManager::mouseMapping(sf::Mouse::Button button, void(*function)()) {
+void InputManager::mouseMapping(sf::Mouse::Button button, std::function<void()> function) {
     this->mouseMap.insert({ button, function });
 }
 

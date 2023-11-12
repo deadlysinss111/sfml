@@ -1,17 +1,18 @@
 #define NOMINMAX
 #include <windows.h>
 #include "../../includes/logic/Brick.hpp"
+#include <iostream>
 
-Brick::Brick(InputManager* inputManager, int x, int y, float width, float height) {
+Brick::Brick(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height) {
 	this->inputManager = inputManager;
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->shape->setFillColor(sf::Color::Green);
-	this->x = GetSystemMetrics(SM_CXSCREEN) / 2 - this->w / 2;
-	this->y = GetSystemMetrics(SM_CYSCREEN) - this->y;
+	this->x = x;
+	this->y = y;
 	this->w = width;
 	this->h = height;
-	this->velocity = new sf::Vector2f(0.f, 0.f);
-	this->shape->setOrigin(sf::Vector2f(w / 2, h / 2));
+	this->hp = 3;
+	this->shape->setPosition(x, y);
 }
 
 
@@ -19,4 +20,11 @@ Brick::~Brick() {};
 
 bool Brick::update(float deltaT, std::vector<GameObject*>* objectVector){
 	return 0;
+}
+
+void Brick::onHit() {
+	this->hp -= 1;
+	if (hp == 0) {
+		this->dead = true;
+	}
 }

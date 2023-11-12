@@ -3,13 +3,19 @@
 #include <vector>
 
 class GameObject;
+class InputManager;
 
 class GameManager {
 public:
-	GameManager();
+	GameManager(InputManager* inputManager, sf::RenderWindow* window);
 	~GameManager();
 
-	static std::vector<GameObject*> objectVector;
-	void manage(float deltaT);
+	InputManager* inputManager;
+	sf::RenderWindow* window;
+
+	static std::vector<GameObject*>* objectVector;
+	bool manage(float deltaT);
 	void insert(GameObject* object);
+	void shoot();
+	void setup();
 };
