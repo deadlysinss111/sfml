@@ -1,10 +1,9 @@
-//#include <SFML/Graphics.hpp>
 #define NOMINMAX
 #include <Windows.h>
 #include "../../includes/logic/Bullet.hpp"
-#include <iostream>
 
-Bullet::Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y) : GameObject(inputManager, window, x, y, 25) {
+
+Bullet::Bullet(sf::RenderWindow* window, int x, int y) : GameObject(window, x, y, 25) {
     this->shape->setFillColor(sf::Color::Green);
 };
 

@@ -1,16 +1,14 @@
 #pragma once
-#include "SFML/Graphics.hpp"
 #include <unordered_map>
 #include <functional>
-
-
+#include "SFML/Graphics.hpp"
 class InputManager {
 public:
 	InputManager(sf::RenderWindow* window);
 	~InputManager();
 
 	sf::RenderWindow* window;
-	
+
 	void keyMapping(sf::Keyboard::Key, std::function<void()> function);
 	void mouseMapping(sf::Mouse::Button, std::function<void()> function);
 	void moveMapping(std::function<void()>);

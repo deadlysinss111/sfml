@@ -1,7 +1,7 @@
 #define NOMINMAX
 #include <windows.h>
 #include "../../includes/logic/Brick.hpp"
-#include <iostream>
+
 
 std::map<int, sf::Color> Brick::colorMap{
 	{1, sf::Color::Red},
@@ -9,7 +9,7 @@ std::map<int, sf::Color> Brick::colorMap{
 	{3, sf::Color::Green}
 };
 
-Brick::Brick(InputManager* inputManager, sf::RenderWindow* window, int x, int y, int hp) : GameObject(inputManager, window, 100 +121 * x , 20 + 32 * y, 120, 30) {
+Brick::Brick(sf::RenderWindow* window, int x, int y, int hp) : GameObject(window, 100 +121 * x , 20 + 32 * y, 120, 30) {
 	this->hp = hp;
 	this->shape->setFillColor(this->colorMap.find(hp)->second);
 }

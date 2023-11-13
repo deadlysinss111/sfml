@@ -1,17 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class InputManager;
 
 class GameObject {
 public:
-	GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height);
-	GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius);
+	GameObject(sf::RenderWindow* window, int x, int y, float width, float height);
+	GameObject(sf::RenderWindow* window, int x, int y, float radius);
 	GameObject();
 	~GameObject();
 
 	
-	InputManager* inputManager;
 	sf::RenderWindow* window;
 	sf::Shape* shape;
 	virtual bool update(float deltaT, std::vector<GameObject*>* objectVector) { return 0; };

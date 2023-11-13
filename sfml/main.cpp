@@ -2,11 +2,11 @@
 #define NOMINMAX
 #include <Windows.h>
 #include <iostream>
+#include "includes/logic/GameManager.hpp"
 #include "includes/engine/InputManager.hpp"
 #include "includes/logic/GameObject.hpp"
 #include "includes/logic/Cannon.hpp"
 #include "includes/logic/Bullet.hpp"
-#include "includes/logic/GameManager.hpp"
 
 
 int main(int argc, char** argv)

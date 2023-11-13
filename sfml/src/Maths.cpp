@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "../includes/logic/Maths.hpp"
 #include<iostream>
+
 using namespace Maths;
 
 float Maths::normalizing(sf::Vector2f* vect) {

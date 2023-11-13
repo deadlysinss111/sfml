@@ -1,3 +1,6 @@
+#define NOMINMAX
+#include <typeinfo>
+#include <Windows.h>
 #include "../includes/logic/GameManager.hpp"
 #include "../includes/logic/GameObject.hpp"
 #include "../includes/logic/Bullet.hpp"
@@ -5,11 +8,6 @@
 #include "../includes/logic/Cannon.hpp"
 #include "../includes/engine/InputManager.hpp"
 #include "../includes/logic/Maths.hpp"
-#include <iostream>
-#include <typeinfo>
-#define NOMINMAX
-#include <Windows.h>
-
 
 std::vector<GameObject*> GameManager::objectVector;
 
@@ -56,7 +54,7 @@ void GameManager::insert(GameObject* object){
 void GameManager::shoot() {
 	if(this->currentBullets < this->maxBullets)
 	{
-		Bullet* bullet = new Bullet(this->inputManager, this->window, this->window->getSize().x / 2, this->window->getSize().y);
+		Bullet* bullet = new Bullet(this->window, this->window->getSize().x / 2, this->window->getSize().y);
 		//Bullet* bullet = new Bullet(this->inputManager, this->window, 200, 200);
 		sf::Vector2f mouseVect(sf::Vector2f(sf::Mouse::getPosition().x - bullet->x, sf::Mouse::getPosition().y - bullet->y));
 		Maths::normalized(&mouseVect);
@@ -74,7 +72,7 @@ void GameManager::setup() {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 5; j++) {
 			for (int k = 0; k < 15; k++) {
-				Brick* brick = new Brick(this->inputManager, this->window, k, j + 5*i, 3-i);
+				Brick* brick = new Brick(this->window, k, j + 5*i, 3-i);
 				this->objectVector.push_back(brick);
 			}
 		}

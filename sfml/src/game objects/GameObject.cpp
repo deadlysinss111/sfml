@@ -1,10 +1,13 @@
-#include "../../includes/logic/GameObject.hpp"
-#include <iostream>
 #define NOMINMAX
 #include <Windows.h>
+#include "../../includes/logic/GameObject.hpp"
+#include "../../includes/logic/Bullet.hpp"
+#include "../../includes/logic/Brick.hpp"
+#include "../../includes/logic/Cannon.hpp"
 
-GameObject::GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height) {
-	this->inputManager = inputManager;
+
+
+GameObject::GameObject(sf::RenderWindow* window, int x, int y, float width, float height){
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->x = x; this->y = y;
 	this->w = width; this->h = height;
@@ -16,8 +19,7 @@ GameObject::GameObject(InputManager* inputManager, sf::RenderWindow* window, int
 }
 
 
-GameObject::GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius){
-	this->inputManager = inputManager;
+GameObject::GameObject(sf::RenderWindow* window, int x, int y, float radius){
 	this->shape = new sf::CircleShape(radius);
 	this->x = x; this->y = y;
 	this->h = radius; this->w = radius;

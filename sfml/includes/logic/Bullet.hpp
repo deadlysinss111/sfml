@@ -1,12 +1,10 @@
 #pragma once
 #include "GameObject.hpp"
 
-//#include <SFML/Graphics.hpp>
-//class sf::CircleShape;
 
 class Bullet : public GameObject {
 public:
-	Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y);
+	Bullet(sf::RenderWindow* window, int x, int y);
 	~Bullet();
 	bool update(float deltaT, std::vector<GameObject*>* objectVector);
 
@@ -17,4 +15,5 @@ public:
 	void setVelocity(sf::Vector2f* vect);
 	void adjustPosition();
 	void onHit(GameObject* target);
+
 };
