@@ -5,23 +5,12 @@
 #include "../../includes/logic/Maths.hpp"
 #include "../../includes/engine/InputManager.hpp"
 
-Cannon::Cannon(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height) : GameObject(){
-	this->inputManager = inputManager;
-	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
-	this->shape->setFillColor(sf::Color::Green);
-	this->x = GetSystemMetrics(SM_CXSCREEN) / 2 ;
-	this->y = GetSystemMetrics(SM_CYSCREEN);
-	this->w = width;
-	this->h = height;
-	this->velocity.x = 0.f;
-	this->velocity.y = 0.f;
-	this->shape->setOrigin(sf::Vector2f(w / 2, h / 2));
-	this->shape->setPosition(sf::Vector2f(this->x, this->y));
+Cannon::Cannon(InputManager* inputManager, sf::RenderWindow* window) : GameObject(inputManager, window, GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN), 100, 50){
 	this->inputManager->moveMapping(std::bind(&Cannon::rotate, this));
 };
 
 Cannon::~Cannon() {
-	delete this->shape;
+	
 };
 
 void Cannon::rotate(){

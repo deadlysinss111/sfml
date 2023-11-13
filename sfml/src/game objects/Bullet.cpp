@@ -4,17 +4,8 @@
 #include "../../includes/logic/Bullet.hpp"
 #include <iostream>
 
-Bullet::Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius) {
-	this->inputManager = inputManager;
-	this->shape = new sf::CircleShape(radius);
-	this->shape->setFillColor(sf::Color::Green);
-	this->x = x;
-	this->y = y;
-	this->h = radius;
-	this->w = radius;
-	this->velocity.x = 0.f;
-	this->velocity.y = 0.f;
-    this->window = window;
+Bullet::Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius) : GameObject(inputManager, window, x, y, radius) {
+
 };
 
 Bullet::~Bullet() {
@@ -73,7 +64,7 @@ void Bullet::adjustPosition() {
         this->velocity.y = -this->velocity.y;
     }
 
-    if (this->y + this->h > this->window->getSize().y + 500) {
+    if (this->y + this->h > this->window->getSize().y + 100) {
         this->dead = 1;
     }
 }

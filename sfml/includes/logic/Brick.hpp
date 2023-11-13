@@ -4,11 +4,11 @@
 
 class Brick : public GameObject {
 public:
-	Brick(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height);
+	Brick(InputManager* inputManager, sf::RenderWindow* window, int x, int y, int hp);
 	~Brick();
-	bool update(float deltaT, std::vector<GameObject*>* objectVector);
-	//sf::RectangleShape* shape;
-	void onHit();
 
 	int hp;
+
+	bool update(float deltaT, std::vector<GameObject*>* objectVector);
+	void onHit();
 };

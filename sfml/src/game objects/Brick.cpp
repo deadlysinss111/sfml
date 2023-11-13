@@ -3,16 +3,8 @@
 #include "../../includes/logic/Brick.hpp"
 #include <iostream>
 
-Brick::Brick(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height) {
-	this->inputManager = inputManager;
-	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
-	this->shape->setFillColor(sf::Color::Green);
-	this->x = x;
-	this->y = y;
-	this->w = width;
-	this->h = height;
-	this->hp = 3;
-	this->shape->setPosition(x, y);
+Brick::Brick(InputManager* inputManager, sf::RenderWindow* window, int x, int y, int hp) : GameObject(inputManager, window, 10 +101 * x , 10 + 31 * y, 100, 30) {
+	this->hp = hp;
 }
 
 

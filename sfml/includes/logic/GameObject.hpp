@@ -5,6 +5,8 @@ class InputManager;
 
 class GameObject {
 public:
+	GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height);
+	GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius);
 	GameObject();
 	~GameObject();
 

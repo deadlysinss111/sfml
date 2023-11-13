@@ -50,10 +50,10 @@ void GameManager::shoot() {
 }
 
 void GameManager::setup() {
-	Cannon* cannon = new Cannon(this->inputManager, this->window, 100, 50, 100, 50);
+	Cannon* cannon = new Cannon(this->inputManager, this->window);
 	this->objectVector->push_back(cannon);
 	for (int i = 0; i < 10; i++) {
-		Brick* brick = new Brick(this->inputManager, this->window, 10 + 101*i, 30, 100, 30);
+		Brick* brick = new Brick(this->inputManager, this->window, i, 0, 2);
 		this->objectVector->push_back(brick);
 	}
 }
