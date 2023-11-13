@@ -1,10 +1,12 @@
-#pragma once
+/*#pragma once
 #include "Scene.hpp"
+namespace Maths{
+	class BrickBreakerScene : public Scene {
+	public:
+		BrickBreakerScene();
+		~BrickBreakerScene();
 
-class BrickBreakerScene : public Scene {
-public:
-	BrickBreakerScene();
-	~BrickBreakerScene();
-
-	void render(std::vector<GameObject*> objectList);
-};
+		void render(std::vector<GameObject*> objectList);
+	};
+}
+*/

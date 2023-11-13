@@ -6,7 +6,7 @@
 
 class Bullet : GameObject {
 public:
-	Bullet();
+	Bullet(sf::RenderWindow* window, int x, int y, float radius);
 	~Bullet();
 	sf::CircleShape* shape;
 	void move(sf::Vector2f* vect, float deltaT);

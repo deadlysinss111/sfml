@@ -5,8 +5,7 @@
 
 class Brick : GameObject {
 public:
-	int life;
-	Brick();
+	Brick(sf::RenderWindow* window, int x, int y, int hp);
 	~Brick();
 	sf::RectangleShape* rectangle;
 };
