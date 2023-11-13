@@ -7,6 +7,7 @@
 
 Cannon::Cannon(InputManager* inputManager, sf::RenderWindow* window) : GameObject(inputManager, window, GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN), 100, 50){
 	this->inputManager->moveMapping(std::bind(&Cannon::rotate, this));
+	this->shape->setFillColor(sf::Color::White);
 };
 
 Cannon::~Cannon() {

@@ -6,7 +6,7 @@
 
 class Bullet : public GameObject {
 public:
-	Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius);
+	Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y);
 	~Bullet();
 	bool update(float deltaT, std::vector<GameObject*>* objectVector);
 
@@ -16,4 +16,5 @@ public:
 	void checkCollideRect(GameObject* target);
 	void setVelocity(sf::Vector2f* vect);
 	void adjustPosition();
+	void onHit(GameObject* target);
 };

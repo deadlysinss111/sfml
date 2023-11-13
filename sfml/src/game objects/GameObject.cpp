@@ -6,7 +6,6 @@
 GameObject::GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float width, float height) {
 	this->inputManager = inputManager;
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
-	this->shape->setFillColor(sf::Color::Green);
 	this->x = x; this->y = y;
 	this->w = width; this->h = height;
 	this->velocity.x = 0.f;
@@ -20,7 +19,6 @@ GameObject::GameObject(InputManager* inputManager, sf::RenderWindow* window, int
 GameObject::GameObject(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius){
 	this->inputManager = inputManager;
 	this->shape = new sf::CircleShape(radius);
-	this->shape->setFillColor(sf::Color::Green);
 	this->x = x; this->y = y;
 	this->h = radius; this->w = radius;
 	this->velocity.x = 0.f;
@@ -38,6 +36,5 @@ void GameObject::display(sf::RenderWindow* window) {
 	window->draw(*this->shape);
 }
 
-void GameObject::onHit() {
-	//std::cout << "feur";
+void GameObject::onHit(GameObject* target) {
 }

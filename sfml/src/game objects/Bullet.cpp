@@ -4,8 +4,8 @@
 #include "../../includes/logic/Bullet.hpp"
 #include <iostream>
 
-Bullet::Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y, float radius) : GameObject(inputManager, window, x, y, radius) {
-
+Bullet::Bullet(InputManager* inputManager, sf::RenderWindow* window, int x, int y) : GameObject(inputManager, window, x, y, 25) {
+    this->shape->setFillColor(sf::Color::Green);
 };
 
 Bullet::~Bullet() {
@@ -19,30 +19,28 @@ void Bullet::move(float deltaT) {
 }
 
 void Bullet::checkCollideRect(GameObject* target) {
-    if (this->x + this->w > 0 && this->x < this->window->getSize().x && this->y + this->h > 0 && this->y < this->window->getSize().y) {
-        if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y) {
-            target->onHit();
+    if(target != this){
+        if (this->x + this->w > 0 && this->x < this->window->getSize().x && this->y + this->h > 0 && this->y < this->window->getSize().y) {
+            if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y) {
 
-            float targetXMax = target->x + target->w;
-            float targetYMax = target->y + target->h;
+                float targetXMax = target->x + target->w;
+                float targetYMax = target->y + target->h;
 
-            if (target->y < this->y && this->y < targetYMax) {
-                this->velocity.y = -this->velocity.y;
-                //target->velocity->y = -target->velocity->y;
-            }
-            else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
-                this->velocity.y = -this->velocity.y;
-                //target->velocity->y = -target->velocity->y;
+                if (target->y < this->y && this->y < targetYMax) {
+                    this->velocity.y = -this->velocity.y;
+                }
+                else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
+                    this->velocity.y = -this->velocity.y;
 
-            }
-            else if (target->x < this->x && this->x < targetXMax) {
-                this->velocity.x = -this->velocity.x;
-                //target->velocity->x = -target->velocity->x;
+                }
+                else if (target->x < this->x && this->x < targetXMax) {
+                    this->velocity.x = -this->velocity.x;
 
-            }
-            else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
-                this->velocity.x = -this->velocity.x;
-                //target->velocity->x = -target->velocity->x;
+                }
+                else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
+                    this->velocity.x = -this->velocity.x;
+                }
+                target->onHit(this);
             }
         }
     }
@@ -75,7 +73,6 @@ void Bullet::setVelocity(sf::Vector2f* v1) {
 
 bool Bullet::update(float deltaT, std::vector<GameObject*>* objectVector){
     this->move(deltaT);
-    //std::cout << this->x << "||" << this->y << std::endl;
     for (int i = 0; i < objectVector->size(); i++) {
         this->checkCollideRect(objectVector->at(i));
     }
@@ -83,7 +80,7 @@ bool Bullet::update(float deltaT, std::vector<GameObject*>* objectVector){
     return 1;
 }
 
-//void Bullet::display(sf::RenderWindow* window) {
-//    window->draw(*this->shape);
-//    std::cout << "-----------" << std::endl;
-//}
+void Bullet::onHit(GameObject* target) {
+    sf::Vector2f vect(-target->velocity.x, -target->velocity.y);
+    this->setVelocity(&vect);
+}

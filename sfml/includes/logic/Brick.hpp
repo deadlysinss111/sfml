@@ -8,7 +8,8 @@ public:
 	~Brick();
 
 	int hp;
+	static std::map<int, sf::Color> colorMap;
 
 	bool update(float deltaT, std::vector<GameObject*>* objectVector);
-	void onHit();
+	void onHit(GameObject* target);
 };

@@ -17,13 +17,14 @@ public:
 	virtual bool update(float deltaT, std::vector<GameObject*>* objectVector) { return 0; };
 	void display(sf::RenderWindow* window);
 	void checkCollideRect(GameObject* target, sf::RenderWindow& window) {};
-	virtual void onHit();
+	virtual void onHit(GameObject* target);
 
 	float x;
 	float y;
 	float h;
 	float w;
 	bool dead;
+	
 	sf::Vector2f velocity;
 	
 };
