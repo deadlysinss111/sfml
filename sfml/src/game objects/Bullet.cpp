@@ -1,6 +1,8 @@
 #define NOMINMAX
 #include <Windows.h>
+#include <iostream>
 #include "../../includes/logic/Bullet.hpp"
+#include "../../includes/logic/Cannon.hpp"
 
 
 Bullet::Bullet(sf::RenderWindow* window, int x, int y) : GameObject(window, x, y, 25) {
@@ -17,33 +19,51 @@ void Bullet::move(float deltaT) {
     this->shape->setPosition(x, y);
 }
 
-void Bullet::checkCollideRect(GameObject* target) {
+bool Bullet::checkCollideRect(GameObject* target) {
     if(target != this){
         if (this->x + this->w > 0 && this->x < this->window->getSize().x && this->y + this->h > 0 && this->y < this->window->getSize().y) {
             if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y) {
-
-                float targetXMax = target->x + target->w;
-                float targetYMax = target->y + target->h;
-
-                if (target->y < this->y && this->y < targetYMax) {
-                    this->velocity.y = -this->velocity.y;
-                }
-                else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
-                    this->velocity.y = -this->velocity.y;
-
-                }
-                else if (target->x < this->x && this->x < targetXMax) {
-                    this->velocity.x = -this->velocity.x;
-
-                }
-                else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
-                    this->velocity.x = -this->velocity.x;
-                }
-                target->onHit(this);
+                return true;
             }
         }
     }
+    return false;
 }
+
+bool Bullet::checkCollideCircleRect(GameObject* target) {
+    if (typeid(*target) == typeid(Bullet) || typeid(*target) == typeid(Cannon)) { return false; }
+    float disatanceX = std::abs(this->x - target->x);
+    float disatanceY = std::abs(this->y - target->y);
+    if (disatanceX > (target->w / 2 + this->h)) { return false; }
+    if (disatanceY > (target->h / 2 + this->h)) { return false; }
+    if (disatanceX <= (target->w / 2)) { return true; }
+    if (disatanceY <= (target->h / 2)) { return true; }
+    auto cornerDistance_sq = (disatanceX - target->w / 2) * (disatanceX - target->w / 2) + (disatanceY - target->h / 2) * (disatanceY - target->h / 2);
+
+    return (cornerDistance_sq <= (this->h * this->h));
+}
+
+void Bullet::collideEffect(GameObject* target) {
+    float targetXMax = target->x + target->w;
+    float targetYMax = target->y + target->h;
+
+    if (target->y < this->y && this->y < targetYMax) {
+        this->velocity.y = -this->velocity.y;
+    }
+    else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
+        this->velocity.y = -this->velocity.y;
+
+    }
+    else if (target->x < this->x && this->x < targetXMax) {
+        this->velocity.x = -this->velocity.x;
+
+    }
+    else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
+        this->velocity.x = -this->velocity.x;
+    }
+    target->onHit(this);
+}
+
 
 void Bullet::adjustPosition() {
     if (this->x < 0) {
@@ -73,7 +93,9 @@ void Bullet::setVelocity(sf::Vector2f* v1) {
 bool Bullet::update(float deltaT, std::vector<GameObject*>* objectVector){
     this->move(deltaT);
     for (int i = 0; i < objectVector->size(); i++) {
-        this->checkCollideRect(objectVector->at(i));
+        if (this->checkCollideCircleRect(objectVector->at(i))) {
+            this->collideEffect(objectVector->at(i));
+        }
     }
     this->adjustPosition();
     return 1;

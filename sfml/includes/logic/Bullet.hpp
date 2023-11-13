@@ -11,9 +11,11 @@ public:
 	//sf::CircleShape* shape;
 	//void display(sf::RenderWindow*);
 	void move(float deltaT);
-	void checkCollideRect(GameObject* target);
+	bool checkCollideRect(GameObject* target);
+	bool checkCollideCircleRect(GameObject* target);
 	void setVelocity(sf::Vector2f* vect);
 	void adjustPosition();
 	void onHit(GameObject* target);
+	void collideEffect(GameObject*);
 
 };
