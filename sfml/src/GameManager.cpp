@@ -1,6 +1,8 @@
 #define NOMINMAX
 #include <typeinfo>
 #include <Windows.h>
+#include <fstream>
+#include <iostream>
 #include "../includes/logic/GameManager.hpp"
 #include "../includes/logic/GameObject.hpp"
 #include "../includes/logic/Bullet.hpp"
@@ -67,16 +69,35 @@ void GameManager::shoot() {
 }
 
 void GameManager::setup() {
-	Cannon* cannon = new Cannon(this->inputManager, this->window);
-	this->objectVector.push_back(cannon);
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 5; j++) {
-			for (int k = 0; k < 15; k++) {
-				Brick* brick = new Brick(this->window, k, j + 5*i, 3-i);
+	std::ifstream level;
+	level.open("src/assets/level files/test.txt");
+	if (level.is_open()) {
+		std::string polf;
+		level >> polf;
+
+		Cannon* cannon = new Cannon(this->inputManager, this->window);
+		this->objectVector.push_back(cannon);
+
+		for (int i = 0; i < polf.size(); i++) {
+			if (polf[i] != '0' ) {
+				int j = polf[i] - '0';
+				Brick* brick = new Brick(this->window, i%15, i / 15, j);
 				this->objectVector.push_back(brick);
 			}
 		}
+
+		/*for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 5; j++) {
+				for (int k = 0; k < 15; k++) {
+
+					Brick* brick = new Brick(this->window, k, j + 5 * i, 3 - i);
+					this->objectVector.push_back(brick);
+				}
+			}
+		}*/
 	}
+	else { std::cout << "flop"; }
+	
 }
 
 void GameManager::addFont(std::string name, const char* path) {

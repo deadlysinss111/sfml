@@ -1,4 +1,5 @@
 #include "../includes/engine/InputManager.hpp"
+#include <vector>
 
 InputManager::InputManager(sf::RenderWindow* window) {
     this->window = window;
