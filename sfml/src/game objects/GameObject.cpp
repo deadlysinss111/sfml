@@ -1,40 +1,43 @@
-//#include <SFML/Graphics.hpp>
+#define NOMINMAX
+#include <Windows.h>
 #include "../../includes/logic/GameObject.hpp"
+#include "../../includes/logic/Bullet.hpp"
+#include "../../includes/logic/Brick.hpp"
+#include "../../includes/logic/Cannon.hpp"
 
-GameObject::GameObject(int x, int y, float radius) {
-	this->shape = new sf::CircleShape(radius);
-	this->shape->setFillColor(sf::Color::Green);
-	this->x = x;
-	this->y = y;
-	this->h = radius;
-	this->w = radius;
-}
 
-GameObject::GameObject(int x, int y, float width, float height) {
+
+GameObject::GameObject(sf::RenderWindow* window, int x, int y, float width, float height){
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
-	this->shape->setFillColor(sf::Color::Green);
-	this->x = x;
-	this->y = y;
-	this->w = width;
-	this->h = height;
+	this->x = x; this->y = y;
+	this->w = width; this->h = height;
+	this->velocity.x = 0.f;
+	this->velocity.y = 0.f;
+	this->shape->setOrigin(sf::Vector2f(w / 2, h / 2));
+	this->shape->setPosition(sf::Vector2f(this->x, this->y));
+	this->dead = false;
 }
 
-GameObject::~GameObject() {};
 
-void GameObject::move(sf::Vector2f* vect, float deltaT) {
-	this->x += vect->x * deltaT;
-	this->y += vect->y * deltaT;
-	this->shape->setPosition(x, y);
+GameObject::GameObject(sf::RenderWindow* window, int x, int y, float radius){
+	this->shape = new sf::CircleShape(radius);
+	this->x = x; this->y = y;
+	this->h = radius; this->w = radius;
+	this->velocity.x = 0.f;
+	this->velocity.y = 0.f;
+	this->window = window;
+	this->shape->setOrigin(sf::Vector2f(w / 2, h / 2));
 }
 
-void GameObject::rotate(float value) {
-	this->shape->rotate(value);
+GameObject::GameObject() {};
+
+GameObject::~GameObject() {
+	delete this->shape;
+};
+
+void GameObject::display(sf::RenderWindow* window) {
+	window->draw(*this->shape);
 }
 
-bool GameObject::checkCollideRect(GameObject* target) {
-	if (this->x < target->x + target->w && this->x + this->w > target->x && this->y < target->y + target->h && this->y + this->h > target->y) {
-		return 1;
-	}
-	return 0;
+void GameObject::onHit(GameObject* target) {
 }
-
