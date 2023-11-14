@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../../includes/logic/Bullet.hpp"
 #include "../../includes/logic/Cannon.hpp"
+#include "../../includes/logic/Brick.hpp"
 
 
 Bullet::Bullet(sf::RenderWindow* window, int x, int y) : GameObject(window, x, y, 25) {
@@ -43,22 +44,30 @@ bool Bullet::checkCollideCircleRect(GameObject* target) {
     return (cornerDistance_sq <= (this->h * this->h));
 }
 
+bool Bullet::checkCollideCircle(GameObject* target) {
+    float distanceX = std::abs(this->x - target->x);
+    float distanceY = std::abs(this->y - target->y);
+    float distance = sqrt(distanceX*distanceX + distanceY * distanceY);
+    if ((this->w + target->w) >= distance) { return true; }
+    return false;
+}
+
 void Bullet::collideEffect(GameObject* target) {
     float targetXMax = target->x + target->w;
     float targetYMax = target->y + target->h;
 
-    if (target->y < this->y && this->y < targetYMax) {
+    if (target->y < this->y) {
         this->velocity.y = -this->velocity.y;
     }
-    else if (target->y < this->y + this->h && this->y + this->h < targetYMax) {
+    else if (target->y < this->y + this->h) {
         this->velocity.y = -this->velocity.y;
 
     }
-    else if (target->x < this->x && this->x < targetXMax) {
+    else if (target->x < this->x) {
         this->velocity.x = -this->velocity.x;
 
     }
-    else if (target->x < this->x + this->w && this->x + this->w < targetXMax) {
+    else if (target->x < this->x + this->w) {
         this->velocity.x = -this->velocity.x;
     }
     target->onHit(this);
@@ -93,8 +102,19 @@ void Bullet::setVelocity(sf::Vector2f* v1) {
 bool Bullet::update(float deltaT, std::vector<GameObject*>* objectVector){
     this->move(deltaT);
     for (int i = 0; i < objectVector->size(); i++) {
-        if (this->checkCollideCircleRect(objectVector->at(i))) {
-            this->collideEffect(objectVector->at(i));
+        auto target = objectVector->at(i);
+        if (typeid(*target) == typeid(Brick)) {
+            if(this->checkCollideCircleRect(target)) {
+                this->collideEffect(target);
+            }
+        }
+        else if (typeid(*target) == typeid(Bullet)) {
+            if(target != this)
+            {
+                if (this->checkCollideCircle(target)) {
+                    this->collideEffect(target);
+                }
+            }
         }
     }
     this->adjustPosition();

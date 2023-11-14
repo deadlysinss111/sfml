@@ -26,6 +26,7 @@ GameObject::GameObject(sf::RenderWindow* window, int x, int y, float radius){
 	this->velocity.x = 0.f;
 	this->velocity.y = 0.f;
 	this->window = window;
+	this->shape->setOrigin(sf::Vector2f(w / 2, h / 2));
 }
 
 GameObject::GameObject() {};

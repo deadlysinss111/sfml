@@ -10,6 +10,7 @@
 #include "../includes/logic/Cannon.hpp"
 #include "../includes/engine/InputManager.hpp"
 #include "../includes/logic/Maths.hpp"
+#include "../includes/logic/ShockWave.hpp"
 
 std::vector<GameObject*> GameManager::objectVector;
 
@@ -19,6 +20,7 @@ GameManager::GameManager(InputManager* inputManager, sf::RenderWindow* window) {
 	this->inputManager = inputManager;
 	this->window = window;
 	this->inputManager->mouseMapping(sf::Mouse::Left, std::bind(&GameManager::shoot, this));
+	this->inputManager->mouseMapping(sf::Mouse::Right, std::bind(&GameManager::wave, this));
 	this->maxBullets = 2;
 	this->currentBullets = 0;
 	this->setup();
@@ -66,6 +68,12 @@ void GameManager::shoot() {
 		this->objectVector.push_back(bullet);
 		this->currentBullets++;
 	}
+}
+
+void GameManager::wave() {
+	sf::Vector2f mousePosition(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+	ShockWave* wave = new ShockWave(this->window, &mousePosition);
+	this->objectVector.push_back(wave);
 }
 
 void GameManager::setup() {

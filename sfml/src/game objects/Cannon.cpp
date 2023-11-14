@@ -6,9 +6,6 @@
 #include "../../includes/engine/InputManager.hpp"
 #include "../../includes/logic/Cannon.hpp"
 
-using namespace Maths;
-class InputManager; 
-
 Cannon::Cannon(InputManager* inputManager, sf::RenderWindow* window) : GameObject(window, GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN), 100, 50){
 	this->inputManager->moveMapping(std::bind(&Cannon::rotate, this));
 	this->shape->setFillColor(sf::Color::White);

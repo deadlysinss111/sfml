@@ -12,6 +12,9 @@ class Brick;
 class GameManager {
 public:
 
+    GameManager(InputManager* inputManager, sf::RenderWindow* window);
+    ~GameManager();
+
     InputManager* inputManager;
     sf::RenderWindow* window;
     static std::vector<GameObject*> objectVector;
@@ -21,12 +24,10 @@ public:
     sf::Text scoreText;
     int scoreLogic;
 
-    GameManager(InputManager* inputManager, sf::RenderWindow* window);
-    ~GameManager();
-
     bool manage(float deltaT);
     void insert(GameObject* object);
     void shoot();
+    void wave();
     void setup();
     void addFont(std::string name, const char* path);
     void scoreSetup();

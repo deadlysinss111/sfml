@@ -15,6 +15,8 @@
     <ClCompile Include="src\game objects\GameObject.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="includes\logic\ShockWave.hpp" />
+    <ClCompile Include="src\game objects\ShockWave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\engine\Scene.hpp" />
