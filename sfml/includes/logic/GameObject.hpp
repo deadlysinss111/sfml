@@ -1,5 +1,14 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+
+#include <SFML/System/Vector2.hpp>
+#include <vector>
+
+namespace sf
+{
+	class RenderWindow;
+	class Shape;
+}
+
 class GameObject {
 public:
 	GameObject(sf::RenderWindow* window, int x, int y, float width, float height);
@@ -10,7 +19,9 @@ public:
 
 	sf::RenderWindow* window;
 	sf::Shape* shape;
-	virtual bool update(float deltaT, std::vector<GameObject*>* objectVector) { return 0; };
+	virtual void f() {};
+
+	virtual bool update(float deltaT, std::vector<GameObject*>* objectVector) { return 0; }
 	void display(sf::RenderWindow* window);
 	void checkCollideRect(GameObject* target, sf::RenderWindow& window) {};
 	virtual void onHit();

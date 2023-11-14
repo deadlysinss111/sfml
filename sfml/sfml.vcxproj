@@ -144,12 +144,14 @@
     <ClCompile Include="src\game objects\GameObject.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\engine\Scene.hpp" />
     <ClInclude Include="includes\logic\GameManager.hpp" />
     <ClInclude Include="includes\logic\GameObject.hpp" />
     <ClInclude Include="includes\logic\Maths.hpp" />
+    <ClInclude Include="Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

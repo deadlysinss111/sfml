@@ -1,9 +1,7 @@
 #include "../includes/engine/InputManager.hpp"
-//#include <>
-//#include "SFML/Graphics.hpp"
-//#include <unordered_map>
-#include <iostream>
-namespace Input {
+
+#include <SFML/Graphics.hpp>
+
 
     InputManager::InputManager(sf::RenderWindow* window) {
         this->window = window;

@@ -1,8 +1,15 @@
-/*#pragma once
+#pragma once
+
 #include "GameObject.hpp"
 
-#include <SFML/Graphics.hpp>
-//class sf::CircleShape;
+#include <SFML/System/Vector2.hpp>
+#include <vector>
+
+namespace sf
+{
+	class RenderWindow;
+}
+
 
 class Bullet : GameObject {
 public:

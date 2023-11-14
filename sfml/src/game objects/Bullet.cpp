@@ -1,6 +1,11 @@
+#define NOMINMAX
+#include "../../includes/logic/Bullet.hpp"
 
-//#include <SFML/Graphics.hpp>
-/*#include "../../includes/logic/Bullet.hpp"
+#include "../../includes/logic/Cannon.hpp"
+
+#include  <SFML/Graphics.hpp>
+#include <Windows.h>
+#include <iostream>
 
 Bullet::Bullet(sf::RenderWindow* window, int x, int y, float radius) : GameObject(window, x, y, radius) {
 

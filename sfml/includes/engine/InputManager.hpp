@@ -1,11 +1,19 @@
 #pragma once
-#include "SFML/Graphics.hpp"
+#include <unordered_map>
+#include <functional>
 
-namespace Input {
-	class InputManager {
-	public:
-		InputManager(sf::RenderWindow* window);
-		~InputManager();
+#include <vector>
+#include <SFML/Window/Event.hpp>
+
+namespace sf
+{
+	class RenderWindow;
+}
+
+class InputManager {
+public:
+	InputManager(sf::RenderWindow* window);
+	~InputManager();
 
 		sf::RenderWindow* window;
 	
